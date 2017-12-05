@@ -1,0 +1,45 @@
+<html>
+<head>
+<style>
+body {
+    background-color: 09A427;
+}
+
+h1 {
+    color: black;
+    margin-left: 16px;
+    font-size: 16px;
+}
+
+table, th, td {
+   border: 1px solid black;
+   margin-left:16px;
+   font-size: 16px;
+}
+</style>
+</head>
+<title>Theo's Stock Ticker Page</title>
+<body>
+<h1>Most recent market prices:</h1>
+{% if ticker_list %}
+    <table>
+    {% for ticker in ticker_list %}
+      <tr>
+        <td>{{ ticker.symbol }}</td>
+        <td>$ {{ ticker.price }}</td>
+      </tr>
+    {% endfor %}
+    </table>
+    <br>
+    <form method='post'>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button name="submit">add topic</button>
+    </form>
+    <h1>Most recent update {{ last_update }}</h1>
+  </ul>
+{% else %}
+    <p>No tickers are available.</p>
+{% endif %}
+</body>
+</html>
